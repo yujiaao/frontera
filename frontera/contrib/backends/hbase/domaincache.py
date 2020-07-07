@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import logging
 from collections import defaultdict
@@ -249,7 +249,7 @@ class DomainCache(LRUCache, DomainMetadata):
         if not self.logger.isEnabledFor(logging.DEBUG):
             return
         if time() > self.next_log:
-            for k, v in self.stats.items():
+            for k, v in list(self.stats.items()):
                 self.logger.debug("%s = %d", k, v)
             self.next_log = time() + self.LOG_INTERVAL
             self.stats = defaultdict(int)
@@ -299,7 +299,7 @@ class DomainCache(LRUCache, DomainMetadata):
                 self.logger.exception("Exception happened during item storing, %d tries left", tries)
                 data_lengths = dict((k, len(v)) for k, v in six.iteritems(data))
                 self.logger.info("RK %s per-column lengths %s", key, str(data_lengths))
-                for k, length in data_lengths.items():
+                for k, length in list(data_lengths.items()):
                     if length > self.MAX_VALUE_SIZE:
                         self.logger.info("Dropping key %s", k)
                         del data[k]

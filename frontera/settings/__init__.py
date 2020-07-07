@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import six
 from importlib import import_module
 
@@ -72,7 +72,7 @@ class BaseSettings(object):
             self.attributes[key] = value
 
     def set_from_dict(self, attributes):
-        for name, value in attributes.items():
+        for name, value in list(attributes.items()):
             self.set(name, value)
 
 

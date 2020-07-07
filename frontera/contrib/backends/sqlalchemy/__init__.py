@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 from frontera.contrib.backends.sqlalchemy.components import Metadata, Queue, States, DomainMetadata
 from frontera.contrib.backends.sqlalchemy.models import DeclarativeBase
@@ -17,7 +17,7 @@ class Distributed(DistributedBackend):
         engine_echo = settings.get('SQLALCHEMYBACKEND_ENGINE_ECHO')
         models = settings.get('SQLALCHEMYBACKEND_MODELS')
         self.engine = create_engine(engine, echo=engine_echo)
-        self.models = dict([(name, load_object(klass)) for name, klass in models.items()])
+        self.models = dict([(name, load_object(klass)) for name, klass in list(models.items())])
         self.session_cls = sessionmaker()
         self.session_cls.configure(bind=self.engine)
         self._metadata = None

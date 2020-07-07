@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from frontera.utils.managers import FrontierManagerWrapper
 from .converters import RequestConverter, ResponseConverter
 

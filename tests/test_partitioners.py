@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 from frontera.contrib.backends.partitioners import FingerprintPartitioner, Crc32NamePartitioner
 from six.moves import range
 

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from six.moves.urllib.parse import urlparse
 from socket import getaddrinfo
 from collections import defaultdict, deque
@@ -79,7 +79,7 @@ class OverusedBuffer(object):
     def _check_and_purge_keys(self):
         if self._max_keys is not None and len(self._pending) > self._max_keys:
             self._log.warning("Purging the keys")
-            new_keys = set(sample(self._pending.keys(), self._keep_keys))
+            new_keys = set(sample(list(self._pending.keys()), self._keep_keys))
             keys = set(self._pending.keys())
             while keys:
                 key = keys.pop()

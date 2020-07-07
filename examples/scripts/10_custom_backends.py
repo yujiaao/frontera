@@ -50,9 +50,9 @@ def test_backend(backend):
     settings.LOGGING_DEBUGGING_ENABLED = False
     frontier = FrontierManager.from_settings(settings)
 
-    print '-'*80
-    print frontier.backend.name
-    print '-'*80
+    print('-'*80)
+    print(frontier.backend.name)
+    print('-'*80)
 
     # Tester
     tester = FrontierTester(frontier, graph)
@@ -60,7 +60,7 @@ def test_backend(backend):
 
     # Show crawling sequence
     for page in tester.sequence:
-        print page.url
+        print(page.url)
 
 
 if __name__ == '__main__':

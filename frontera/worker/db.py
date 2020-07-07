@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 
 import os
 import logging
@@ -63,7 +63,7 @@ class Slot(object):
 
     def schedule(self):
         # component.schedule() function must return None or Deferred
-        scheduled = [component.schedule() for component in self.components.values()]
+        scheduled = [component.schedule() for component in list(self.components.values())]
         deferred = [result for result in scheduled if isinstance(result, Deferred)]
         self._deferred = defer.DeferredList(deferred) if deferred else None
 
@@ -73,7 +73,7 @@ class Slot(object):
         return self._deferred if self._deferred else None
 
     def close(self):
-        for component in self.components.values():
+        for component in list(self.components.values()):
             component.close()
 
     # Additional functions to manage specific components
@@ -133,10 +133,10 @@ class BaseDBWorker(object):
 
     def update_stats(self, replacements=None, increments=None):
         if replacements:
-            for key, value in replacements.items():
+            for key, value in list(replacements.items()):
                 self.stats[key] = value
         if increments:
-            for key, value in increments.items():
+            for key, value in list(increments.items()):
                 self.stats[key] += value
 
     def set_process_info(self, process_info):

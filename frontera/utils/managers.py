@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from frontera.core.manager import LocalFrontierManager, SpiderFrontierManager
 from .converters import BaseRequestConverter, BaseResponseConverter
 

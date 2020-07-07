@@ -23,4 +23,4 @@ if __name__ == '__main__':
 
     # Show crawling sequence
     for page in tester.sequence:
-        print page.url
+        print(page.url)

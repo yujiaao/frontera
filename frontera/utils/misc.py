@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import time
 import logging
@@ -72,7 +72,7 @@ def dict_to_bytes(obj):
     if isinstance(obj, six.text_type):
         return obj.encode('utf8')
     if isinstance(obj, list):
-        return map(dict_to_bytes, obj)
+        return list(map(dict_to_bytes, obj))
     else:
         return obj
 
@@ -83,7 +83,7 @@ def dict_to_unicode(obj):
     if isinstance(obj, six.binary_type):
         return obj.decode('utf8')
     if isinstance(obj, list):
-        return map(dict_to_unicode, obj)
+        return list(map(dict_to_unicode, obj))
     else:
         return obj
 

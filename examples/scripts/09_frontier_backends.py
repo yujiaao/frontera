@@ -22,11 +22,11 @@ def test_logic(backend):
     tester.run(add_all_pages=True)
 
     # Show crawling sequence
-    print '-'*80
-    print frontier.backend.name
-    print '-'*80
+    print('-'*80)
+    print(frontier.backend.name)
+    print('-'*80)
     for page in tester.sequence:
-        print page.url
+        print(page.url)
 
 if __name__ == '__main__':
     test_logic('frontera.contrib.backends.memory.FIFO')

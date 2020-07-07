@@ -17,7 +17,8 @@ To compile the documentation you need the following Python libraries:
 If you have setuptools available the following command will install all of them
 (since Sphinx requires both docutils and jinja)::
 
-    easy_install Sphinx
+    # easy_install Sphinx
+    pip3 install sphinx
 
 
 Compile the documentation

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import copy
 from w3lib.util import to_bytes, to_native_str
 from w3lib.url import safe_url_string

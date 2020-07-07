@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 from twisted.internet import reactor, error
 from twisted.internet.defer import Deferred
 from six.moves import range

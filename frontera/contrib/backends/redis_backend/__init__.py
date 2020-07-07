@@ -61,7 +61,7 @@ class RedisOperation(object):
                 return getattr(self._connection, _api)(*args, **kwargs)
             except ConnectionError:
                 self._logger.exception("Connection to Redis failed operation")
-                pause = timeout.next()
+                pause = next(timeout)
                 if pause is None:
                     break
                 sleep(pause)
@@ -87,7 +87,7 @@ class RedisPipeline(object):
                 return self._pipeline.execute()
             except ConnectionError:
                 self._logger.exception("Connection to Redis failed when executing pipeline")
-                pause = timeout.next()
+                pause = next(timeout)
                 if pause is None:
                     break
                 sleep(pause)
@@ -164,10 +164,10 @@ class RedisQueue(Queue):
                 max_n_requests, to_remove)
             count += subset_count
 
-        self._logger.debug("Finished: hosts {}, requests {}".format(len(queue.keys()), count))
+        self._logger.debug("Finished: hosts {}, requests {}".format(len(list(queue.keys())), count))
 
         results = []
-        for host_crc32, items in queue.items():
+        for host_crc32, items in list(queue.items()):
             for item in items:
                 (_, _, _, encoded, score) = item
                 to_remove.append(packb(item))
@@ -191,7 +191,7 @@ class RedisQueue(Queue):
                     request.meta[FIELD_DOMAIN] = {'name': hostname}
                 timestamp = request.meta[FIELD_CRAWL_AT] if FIELD_CRAWL_AT in request.meta else now
                 to_schedule.setdefault(timestamp, []).append((request, score))
-        for timestamp, batch in to_schedule.items():
+        for timestamp, batch in list(to_schedule.items()):
             self._schedule(batch, timestamp)
 
     @classmethod
@@ -219,7 +219,7 @@ class RedisQueue(Queue):
             item = (timestamp, fingerprint, host_crc32, self._encoder.encode_request(request), score)
             interval_start = self.get_interval_start(score)
             data.setdefault(partition_id, {})[packb(item)] = int(interval_start * 100)
-        for (key, items) in data.items():
+        for (key, items) in list(data.items()):
             self._redis_pipeline.zadd(key, mapping=items)
         self._redis_pipeline.execute()
 
@@ -261,7 +261,7 @@ class RedisState(States):
     def flush(self, force_clear=False):
         if len(self._cache) > self._cache_size_limit:
             force_clear = True
-        [self._redis_pipeline.hmset(fprint, {FIELD_STATE: state}) for (fprint, state) in self._cache.items()]
+        [self._redis_pipeline.hmset(fprint, {FIELD_STATE: state}) for (fprint, state) in list(self._cache.items())]
         self._redis_pipeline.execute()
         if force_clear:
             self._logger.debug("Cache has %d requests, clearing" % len(self._cache))
@@ -346,7 +346,7 @@ class RedisMetadata(Metadata):
                 continue
             links_deduped[link_fingerprint] = link
         [self._redis_pipeline.hmset(fingerprint, self._create_link_extracted(link)) for (fingerprint, link) in
-         links_deduped.items()]
+         list(links_deduped.items())]
         self._redis_pipeline.execute()
 
     def frontier_start(self):

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 from frontera.utils.fingerprint import hostname_local_fingerprint, sha1, md5
 from w3lib.util import to_bytes
 
 
-url1 = u"https://news.yandex.ru/yandsearch?cl4url=top.rbc.ru/politics/14/07/2015/55a50b509a79473f583e104c&lang=ru&lr=54#fragment"
-url2 = u"TestString"
-url3 = u"http://www.example.com/some/page\u5000/"
+url1 = "https://news.yandex.ru/yandsearch?cl4url=top.rbc.ru/politics/14/07/2015/55a50b509a79473f583e104c&lang=ru&lr=54#fragment"
+url2 = "TestString"
+url3 = "http://www.example.com/some/page\u5000/"
 
 
 class TestFingerprint(object):

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from sqlalchemy import Column, String, Integer, Boolean, ForeignKey
 from sqlalchemy.orm import relation
 from sqlalchemy import UniqueConstraint

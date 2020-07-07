@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
+
 import json
 import unittest
 from frontera.contrib.backends.remote.codecs.json import (Encoder as JsonEncoder, Decoder as JsonDecoder,
@@ -23,11 +23,11 @@ def _compare_dicts(dict1, dict2):
 
     shared_keys = set(dict2.keys()) & set(dict2.keys())
 
-    if not (len(shared_keys) == len(dict1.keys()) and len(shared_keys) == len(dict2.keys())):
+    if not (len(shared_keys) == len(list(dict1.keys())) and len(shared_keys) == len(list(dict2.keys()))):
         return False
 
     dicts_are_equal = True
-    for key in dict1.keys():
+    for key in list(dict1.keys()):
         if type(dict1[key]) is dict:
             dicts_are_equal = _compare_dicts(dict1[key], dict2[key])
         else:
@@ -130,7 +130,7 @@ class TestEncodeDecodeJson(unittest.TestCase):
     def test_encode_decode_json_recursively(self):
         _int = 1
         _bytes = b'bytes'
-        _unicode = u'unicode'
+        _unicode = 'unicode'
         _bool = True
         _none = None
         simple_dict = {'key': 'value'}

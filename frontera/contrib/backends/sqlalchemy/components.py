@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 
 from time import time, sleep
 
@@ -249,7 +249,7 @@ class BroadCrawlingQueue(Queue):
             tries += 1
             limit *= 5.5 if tries > 1 else 1.0
             self.logger.debug("Try %d, limit %d, last attempt: requests %d, hosts %d",
-                              tries, limit, count, len(queue.keys()))
+                              tries, limit, count, len(list(queue.keys())))
             queue.clear()
             count = 0
             for item in self._order_by(self.session.query(self.queue_model).filter_by(partition_id=partition_id)).\
@@ -262,12 +262,12 @@ class BroadCrawlingQueue(Queue):
                 count += 1
                 if count > max_n_requests:
                     break
-            if min_hosts is not None and len(queue.keys()) < min_hosts:
+            if min_hosts is not None and len(list(queue.keys())) < min_hosts:
                 continue
             if min_requests is not None and count < min_requests:
                 continue
             break
-        self.logger.debug("Finished: tries %d, hosts %d, requests %d", tries, len(queue.keys()), count)
+        self.logger.debug("Finished: tries %d, hosts %d, requests %d", tries, len(list(queue.keys())), count)
 
         results = []
         for items in six.itervalues(queue):

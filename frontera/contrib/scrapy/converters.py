@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from scrapy.http.request import Request as ScrapyRequest
 from scrapy.http.response import Response as ScrapyResponse
 from scrapy.http.response.html import TextResponse

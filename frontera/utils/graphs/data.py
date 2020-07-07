@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from six.moves import range
 
 
@@ -222,5 +222,5 @@ SITE_LIST_09 = CrawlSiteListData(
         ],
     ])
 
-GRAPHS = [obj for obj in locals().values() if isinstance(obj, CrawlSiteListData)]
+GRAPHS = [obj for obj in list(locals().values()) if isinstance(obj, CrawlSiteListData)]
 #GRAPHS = [SITE_LIST_08]

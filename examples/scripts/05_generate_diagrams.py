@@ -24,7 +24,7 @@ SITE_LIST_B = [
 
 
 def generate_graph(site_list, filename, title, use_urls=False):
-    print 'Generating diagram "%s"...' % title
+    print('Generating diagram "%s"...' % title)
     graph = graphs.Manager()
     graph.add_site_list(site_list)
     graph.render(filename=filename, label=title, use_urls=use_urls)

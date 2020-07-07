@@ -12,5 +12,24 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
       KAFKA_CREATE_TOPICS: "test:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      JMX_PORT: 9999
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  kafka-manager:
+    image: sheepkiller/kafka-manager:latest
+    restart: always
+    container_name: kafka-manager
+    hostname: kafka-manager
+    ports:
+      - "9002:9000"
+    links:            # 连接本compose文件创建的container
+      - kafka
+    external_links:   # 连接本compose文件以外的container
+      - zookeeper
+    environment:
+      ZK_HOSTS: zookeeper:2181
+      KAFKA_BROKERS: kafka:9092
+      APPLICATION_SECRET: letmein
+      KM_ARGS: -Djava.net.preferIPv4Stack=true
+

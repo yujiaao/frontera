@@ -24,15 +24,15 @@ if __name__ == '__main__':
     tester.run()
 
     # Show frontier pages
-    print '-'*80
-    print ' Frontier pages'
-    print '-'*80
-    for page in frontier.backend.pages.values():
-        print page.url, page.depth, page.state
+    print('-'*80)
+    print(' Frontier pages')
+    print('-'*80)
+    for page in list(frontier.backend.pages.values()):
+        print(page.url, page.depth, page.state)
 
     # Show crawling sequence
-    print '-'*80
-    print ' Crawling sequence'
-    print '-'*80
+    print('-'*80)
+    print(' Crawling sequence')
+    print('-'*80)
     for page in tester.sequence:
-        print page.url
+        print(page.url)

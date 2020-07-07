@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from scrapy.core.scheduler import Scheduler
 from scrapy.http import Request
 from logging import getLogger

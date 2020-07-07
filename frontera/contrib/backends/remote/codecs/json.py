@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ A JSON codec for Frontera. Implemented using native json library.
 """
-from __future__ import absolute_import
+
 import json
 import six
 from base64 import b64decode, b64encode

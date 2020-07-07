@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function, absolute_import
+
 
 from math import floor
 from time import time
@@ -77,7 +77,7 @@ def consume_randomly(iterable):
 
 def is_valid_robotstxt(lines):
     for raw_line in lines:
-        line = raw_line.strip(u'\ufeff').lower()  # '\xef\xbb\xbf' in case of bytes
+        line = raw_line.strip('\ufeff').lower()  # '\xef\xbb\xbf' in case of bytes
         if line and not line.startswith("#"):
             if line.startswith("user-agent:") or line.startswith("sitemap:"):
                 return True

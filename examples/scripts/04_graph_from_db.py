@@ -9,5 +9,5 @@ if __name__ == '__main__':
 
     # Show graph pages
     for page in graph.pages:
-        print page
+        print(page)
 

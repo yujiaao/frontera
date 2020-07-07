@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -19,7 +19,7 @@ class CrawlGraphManager(object):
         self.Session.configure(bind=self.engine, autocommit=autocommit, autoflush=autoflush)
         self.session = self.Session()
         if clear_content:
-            for name, table in Base.metadata.tables.items():
+            for name, table in list(Base.metadata.tables.items()):
                 self.session.execute(table.delete())
 
     @property

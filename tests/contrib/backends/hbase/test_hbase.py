@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 from Hbase_thrift import AlreadyExists  # module loaded at runtime in happybase
 from binascii import unhexlify

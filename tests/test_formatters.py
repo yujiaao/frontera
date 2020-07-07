@@ -58,7 +58,7 @@ class TestFormatterColor(BaseTestFormatters):
             log_color_field="levelname")
         self.setFormatter(c)
         self.logger.debug('debug message')
-        self.assertRegexpMatches(self.logger_output.getvalue(),
+        self.assertRegex(self.logger_output.getvalue(),
                                  '{white} \d{{2}}-\d{{2}}-\d{{4}} \d{{2}}:\d{{2}}:\d{{2}} '
                                  '\\[frontera\\] debug message{reset}\n'.format(
                                      white=re.escape(colors['white']),

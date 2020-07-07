@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 
 import threading
 from time import asctime, time
@@ -113,9 +113,9 @@ class BatchGenerator(DBWorkerThreadComponent):
 
     def rotate_and_log_domain_stats(self):
         self.logger.debug("Domain statistics of requests pushed to spider feed")
-        for partition_id, host_stats in sorted(self.domain_stats.items(), key=lambda x: x[0]):
+        for partition_id, host_stats in sorted(list(self.domain_stats.items()), key=lambda x: x[0]):
             self.logger.debug("PID %d =================================================================", partition_id)
-            for hostname, count in host_stats.items():
+            for hostname, count in list(host_stats.items()):
                 self.logger.debug("%s\t%d", hostname, count)
 
             self.domain_stats[partition_id] = defaultdict(int)

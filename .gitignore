@@ -56,3 +56,7 @@ target/
 
 # Virtualenv
 .env/
+venv/
+.idea/
+frontera.egg-info/
+

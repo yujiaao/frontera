@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import copy
 import logging
 import time
@@ -309,7 +309,7 @@ class OffsetsFetcherAsync(object):
             Future: resolves to dict of offsets: {TopicPartition: int}
         """
         assert self.config['api_version'] >= (0, 8, 1), 'Unsupported Broker API'
-        assert all(map(lambda k: isinstance(k, TopicPartition), partitions))
+        assert all([isinstance(k, TopicPartition) for k in partitions])
         if not partitions:
             return Future().success({})
 

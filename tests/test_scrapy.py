@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 
 import sys
 
@@ -154,7 +154,7 @@ class TestFronteraMiddlewaresWithScrapy(unittest.TestCase):
         def test_middleware_output(result):
             out = list(result)
             # Frontera swallows requests but passes items
-            self.assertEquals(len(out), 0)
+            self.assertEqual(len(out), 0)
 
         self.init_smw({
             'SPIDER_MIDDLEWARES': {'frontera.contrib.scrapy.middlewares.schedulers.SchedulerSpiderMiddleware': 1000}
@@ -165,10 +165,10 @@ class TestFronteraMiddlewaresWithScrapy(unittest.TestCase):
 
         def test_middleware_output(result):
             out = list(result)
-            self.assertEquals(len(out), 1)
+            self.assertEqual(len(out), 1)
             self.assertIsInstance(out[0], Request)
             self.assertIn('Referer', out[0].headers)
-            self.assertEquals(out[0].headers['Referer'], to_bytes('http://www.scrapy.org'))
+            self.assertEqual(out[0].headers['Referer'], to_bytes('http://www.scrapy.org'))
 
         self.init_smw({})
         self.perform_test(test_middleware_output)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, division
+
 from frontera import DistributedBackend
 from frontera.core.components import Metadata, Queue, States
 from frontera.core.models import Request
@@ -226,7 +226,7 @@ class HBaseQueue(Queue):
             tries += 1
             limit *= 5.5 if tries > 1 else 1.0
             self.logger.debug("Try %d, limit %d, last attempt: requests %d, hosts %d",
-                              tries, limit, count, len(queue.keys()))
+                              tries, limit, count, len(list(queue.keys())))
             meta_map.clear()
             queue.clear()
             count = 0
@@ -258,14 +258,14 @@ class HBaseQueue(Queue):
             finally:
                 scan_gen.close()
 
-            if min_hosts is not None and len(queue.keys()) < min_hosts:
+            if min_hosts is not None and len(list(queue.keys())) < min_hosts:
                 continue
 
             if count < min_requests:
                 continue
             break
 
-        self.logger.debug("Finished: tries %d, hosts %d, requests %d", tries, len(queue.keys()), count)
+        self.logger.debug("Finished: tries %d, hosts %d, requests %d", tries, len(list(queue.keys())), count)
 
         # For every fingerprint collect it's row keys and return all fingerprints from them
         fprint_map = {}

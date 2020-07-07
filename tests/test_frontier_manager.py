@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from frontera.core.manager import LocalFrontierManager
 from frontera.settings import Settings
 from frontera.core.models import Request, Response
