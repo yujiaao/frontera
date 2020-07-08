@@ -1,9 +1,10 @@
 six>=1.8.0
 w3lib>=1.15.0
-cityhash>=0.1.7
+
+cityhash~=0.1.10
 
 docutils~=0.16
-frontera~=0.8.1.post.dev23.pre
+frontera~=0.8.1
 SQLAlchemy~=1.3.18
 Twisted~=20.3.0
 Scrapy~=2.2.0

@@ -2,7 +2,11 @@
 # Frontier
 #--------------------------------------------------------
 BACKEND = 'frontera.contrib.backends.sqlalchemy.Distributed'
-SQLALCHEMYBACKEND_ENGINE = 'sqlite:///test.db'
+user = "zixun_my"
+password = "swqi2C#2@YcYqzCj"
+host = "10.27.15.147"
+database_name = "overseas_frontera"
+SQLALCHEMYBACKEND_ENGINE = f'mysql://{user}:{password}@{host}/{database_name}'
 
 MAX_REQUESTS = 5
 MAX_NEXT_REQUESTS = 1
