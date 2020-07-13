@@ -1,7 +1,7 @@
 six>=1.8.0
 w3lib>=1.15.0
 
-cityhash~=0.1.10
+cityhash~=0.2.2.post9
 
 docutils~=0.16
 frontera~=0.8.1
