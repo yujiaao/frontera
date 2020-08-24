@@ -6,7 +6,7 @@ user = "zixun_my"
 password = "swqi2C#2@YcYqzCj"
 host = "10.27.15.147"
 database_name = "overseas_frontera"
-SQLALCHEMYBACKEND_ENGINE = f'mysql://{user}:{password}@{host}/{database_name}'
+SQLALCHEMYBACKEND_ENGINE = f'mysql+pymysql://{user}:{password}@{host}/{database_name}?charset=utf8mb4'
 
 MAX_REQUESTS = 5
 MAX_NEXT_REQUESTS = 1

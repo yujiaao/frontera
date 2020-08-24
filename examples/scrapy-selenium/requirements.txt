@@ -1,0 +1,6 @@
+scrapy-sqlitem~=0.1.2
+scrapy~=2.2.1
+pymysql~=0.9.3
+
+
+scrapy-selenium>=0.0.7
